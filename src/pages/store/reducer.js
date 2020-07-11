@@ -1,11 +1,9 @@
 const defaultState = {
   inputValue: '',
   list: [
-    '吃早饭',
-    '说早安',
-    '准备面试',
-    '开始面试',
-    '面试成功'
+    '今天去爬六峰山',
+    '问我有没有机会',
+    '在山顶拍照',
   ]
 }
 
@@ -18,6 +16,9 @@ export default (state=defaultState, action) => {
     case 'addList':
       newState.list.push(action.value)
       newState.inputValue = ''
+      return newState
+    case 'removeList':
+      newState.list.splice(action.index, 1)
       return newState
     default: break
   }

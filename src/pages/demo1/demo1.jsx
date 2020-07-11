@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import store from '../store/demo1'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class Demo1 extends Component {
 
@@ -34,6 +35,14 @@ class Demo1 extends Component {
     store.dispatch(action)
   }
 
+  removeList = (index) => {
+    const action = {
+      type: 'removeList',
+      index: index
+    }
+    store.dispatch(action)
+  }
+
   render() {
     return ( 
       <div className={styles.container}>
@@ -44,8 +53,9 @@ class Demo1 extends Component {
         <List component="nav" aria-label="secondary mailbox folders">
           {
             this.state.list.map((item, index) =>
-              <ListItem button key={index}>
-                {index+1}.{item}
+              <ListItem button key={index} className={styles.listItem}>
+                <div>{index+1}.{item}</div>
+                <DeleteIcon className={styles.delIcon} onClick={() => this.removeList(index)}/>
               </ListItem>
             )
           }
