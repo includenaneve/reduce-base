@@ -1,5 +1,5 @@
 const defaultState = {
-  placeholder: '请写明要做的事',
+  inputValue: '',
   list: [
     '吃早饭',
     '说早安',
@@ -10,5 +10,16 @@ const defaultState = {
 }
 
 export default (state=defaultState, action) => {
+  let newState = JSON.parse(JSON.stringify(state)) // 深拷贝
+  switch (action.type) {
+    case 'changeValue':
+      newState.inputValue = action.value
+      return newState
+    case 'addList':
+      newState.list.push(action.value)
+      newState.inputValue = ''
+      return newState
+    default: break
+  }
   return state
 }

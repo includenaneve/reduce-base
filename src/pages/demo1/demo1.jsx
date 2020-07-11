@@ -11,19 +11,40 @@ class Demo1 extends Component {
   constructor(props) {
     super(props)
     this.state = store.getState()
+    store.subscribe(this.storeChange)
+  }
+
+  storeChange = () => {
+    this.setState(store.getState)
+  }
+
+  changeValue = (e) => {
+    const action = {
+      type: 'changeValue',
+      value: e.target.value
+    }
+    store.dispatch(action)
+  }
+
+  addList = () => {
+    const action = {
+      type: 'addList',
+      value: this.state.inputValue
+    }
+    store.dispatch(action)
   }
 
   render() {
     return ( 
       <div className={styles.container}>
         <div className={styles.titleWrapper}>
-          <TextField label={this.state.placeholder} variant="outlined" size="small" />
-          <Button variant="contained" color="primary" size="large">增加</Button>
+          <TextField label="something to do" variant="outlined" size="small" onChange={this.changeValue} value={this.state.inputValue}/>
+          <Button variant="contained" color="primary" size="large" onClick={this.addList}>增加</Button>
         </div>
         <List component="nav" aria-label="secondary mailbox folders">
           {
             this.state.list.map((item, index) =>
-              <ListItem button>
+              <ListItem button key={index}>
                 {index+1}.{item}
               </ListItem>
             )
