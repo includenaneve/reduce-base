@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router';
 import Demo1 from './pages/demo1/demo1'
 
-
 class Router extends Component {
   state = {  }
   render() { 
