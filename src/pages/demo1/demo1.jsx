@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './demo1.less'
 
 class Demo1 extends Component {
-  render() { 
+  render() {
     return ( 
-      <div>
+      <div className="container">
         Demo1
       </div>
     );
